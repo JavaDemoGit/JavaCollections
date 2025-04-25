@@ -1,0 +1,649 @@
+/*
+Java collections framework represents a hierarchy of set of interfaces and
+classes that are used to manipulate group of objects.
+		  
+Collections are generally used for storing different type objects (student objects, bike objects, car objects, bank objects)
+but if you want to store only one type objects nothing but homogeneous objects (student objects) then use Generics.
+
+Need of Collections in Java:
+	Collection is a java object that is used to store homogeneous & heterogeneous, duplicate & unique objects without size limitation and it is useful for carrying multiple objects 
+  at a time from one application to another application as method argument and return type with single name across all layers of the project (MVC) .
+	
+	java.util package contains several classes to group/collect homogeneous and heterogeneous objects without size limitation. These classes usually collection framework classes.
+				
+	Collections framework classes are divided into two parts
+		1) Collection--------> group objects without mappings
+		2) Map --------------> group objects with mapping
+		
+	Objects that we can store in two ways
+		1) array format   ->    index based
+		2) table format   ->    (key, value) pair
+		
+	In which situations we must choose which format collection?
+		Choose array format
+		-> When identity is not required and 
+		-> less number of searching and removing operations
+		
+	Choose table format 
+		-> when identity is required and 
+		-> more number of searching and removing operations.
+		
+	we can perform 9 operations on collection object
+		1) Adding bottles
+		2) Counting
+		3) Printing
+		
+		4) Searching
+		5) retrieving
+		6) removing
+		
+		7) inserting
+		8) replacing
+		9) sorting
+		
+	In every collection class we must have
+		1. memory for storing objects.
+		2. methods to perform above 9 operations.
+	
+	
+	Problems with all array objects
+		1.	It allows us to store only same type of elements.
+		2. It is fixed size ( can not grow its capacity, fixed in length and size ).
+		3. Does not have inbuilt methods for performing different operations.
+		4. different formats -> allows us to store only in one formats that index based, it does not have identity.
+		5. different orders -> allows us to store only in one order insertion order, but we have so many orders( Sorting order, Last In First Order, First In First Order, Sequ  retrieving, Random retrieving.)
+		
+	Totally we have 18 Collections framework classes.
+		
+		1.0v    ----> Collections API ---> 2 classes and 1 interfaces ,   Legacy Collections means Old Collections
+		
+		1.	Vector   ( c ) ---> It is used for storing  multiple objects in IO( insertion order) with index (array format).
+		2.	Stack    (c) ----> It is class, sub class of Vector. It is used for retrieving multiple objects in LIFO ( Last In First Out order).
+		3.	Dictionary (ac) ---> It is an abstract class, super class of Hashtable.
+		4.	Hashtable  (c)  ----->It is  used for storing objects with mapping (table format).
+		5.	Properties (c)  -----> It is class. It is used for storing objects with mapping and used for storing those properties permanently in a file.
+		3. Enumeration (I) ----> It is an interface. It is a cursor object. it is used for retrieving objects from the underlying collection objects.
+		
+		
+		1.2 v ---->  new Collection classes
+		Vector has 4 problems ::																																			Solutions:
+		1. It is synchronized, slow in execution.																												ArrayList.  (Not Synchronized, so execution is fast)
+		2. slow(gives less performance) in insert and remove operations.																LinkedList. (Provides fast execution in inserting and removing )
+		3. can not stop duplicates.																																	    HashSet.     (it allows only unique objects).
+		4. can not sort objects.																																			  TreeSet.      (it stores objects in sorting order).
+		
+		Hashtable has 3 problems ::
+		1. It is Synchronized, slow in execution.																												HashMap.   (It is not Synchronized, so execution is fast).
+		2. It can not store objects in sorting order.																										TreeMap.    (Stores entries in sorting order).
+		3. It can not store objects with weak references.																								WeakHashMap. (Stores keys with weak references).
+		
+		
+		Enumeration has 2 problems ::
+		1. method names are very lengthy.
+		 																						for both problems of  Enumerations ----------->	Iterator <----- ListIterator.
+		2. can not remove objects while iterating.
+		
+		
+	From Java 1.2 onwards java.util package classes are called Collections Framework, because all these classes are working for solving the same problem that is 
+		collecting objects without size and type limitations.
+		
+	In all collection classes internally uses array object to store multiple objects and provides methods to perform all above 9 operations dynamically.
+		
+		
+		What is the object used inside all collection for storing objects?
+		1.	java.lang.Object[].
+		
+		All collection classes will provide methods to perform different operations such as adding, retrieving, removing, replacing objects in Object[] without size limitations.
+		
+		In four ways we can store data in JVM temporarily
+		1. By using variable.           --------------->  To store single value (or) single object
+		2. By using class object.     --------------->   To store multiple values of particular real-world objects
+		3. By using array object.    --------------->    To store fixed number of multiple values (or) multiple objects of same type.
+		4. By using collection object.  ------------>   To store same or different type of multiple values (or) multiple objects without size limitation.
+		
+		
+		In Java 1.4v we got more three classes to solve the problems of HashSet and HashMap
+		
+		HashSet has one problem
+		1) It can not maintain objects insertion order
+		Solution ------------>      LinkedHashSet is given to store objects in insertion order.
+		
+		HashMap has two problems
+		1) It can not maintain entries insertion order.
+		Solution ------------>     LinkedHashMap is given to store entries in insertion order.
+		
+		2) It always can not store entries in reference wise hash code. means it can store objects based on data and object reference.
+		Solution ------------>     IdentityHashMap is given to store entries in reference wise hash code order
+		
+		Note:
+		-> LHS is the sub class of HS.
+		-> LHM is the sub class of HM.
+		-> IHM is individual class, not sub class of HM.
+		
+	New classes added in Java 5 version ::
+		In Java 5, Queue interface and its subclasses are added to create Queue based collection objects.
+		
+		Also we got two more new collections
+		EnumSet and EnumMap
+		for storing an enum's Named Constants.
+		
+		Also a sub package "java.util.concurrent" is added with new collection classes to support synchronized based collection for
+		performing concurrency operations with parallel processing.
+		
+		
+		Vector						---->	It stores the objects in Insertion Order in Multi Threading / Thread Safety / Synchronized environment.
+		
+		Stack						----> It retrieves the objects in Last In First Out order
+		
+		ArrayList					----> It stores the objects in Insertion Order with index in Single Tread Model application where thread safety and synchronization is not required.
+		
+		LinkedList				----> It stores the objects in Insertion Order, but if more operations are inserting and removing then we use this.
+		
+		HashSet					----> For storing only unique objects / for stopping duplicates.
+		
+	  LinkedHashSet			----> For storing unique objects in Insertion Order.
+		 
+		TreeSet						----> For storing unique objects in Sorting Order.
+		
+		EnumSet					---->	Storing only enum named constants as elements.
+		
+		PriorityQueue			---->	For retrieving objects in First In First Out Order from beginning.
+		
+		ArrayDqueue			---->	For retrieving objects in First In First Out order from both ends.
+		
+	  Concurrent Collec	---->	For concurrency parallel processing.
+		
+		=============================================================================================================
+		
+		HashTable				----> storing objects with mapping in MultiThread Model application with Thread Safety / Synchronization
+		
+		Properties					----> For saving entries in a file permanently.
+		
+		HashMap					----> Storing objects with mapping in Single Thread Model application or Method Local operations.
+		
+		LinkedHashMap		----> Storing objects with mapping in Insertion Order
+		
+		TreeMap					----> Storing entries in Sorting Order.
+		
+		WeakHashMap			---->	For Storing entries with weak references.
+		
+		IdentityHashMap		---->	For Storing entries with references wise hash code.
+		
+		EnumMap				---->	For Storing enum named constants as keys.
+		
+		Concurrent Map		---->	For concurrency parallel processing.
+		
+		
+		Language level new features
+		=====================
+		 * 			1)	Generics			----> for creating homogeneous collections
+		 * 					< >  ----> Generic parameter.
+		 * 					< T>  ---> Type
+		 * 					< E > --->  Element
+		 * 					< K > --->  Key
+		 * 					< N > --->  Number
+		 * 					< V > --->  Value
+		 * 			2) AB and AUB	---->	for storing primitive values in collection.
+		 * 			3) for each loop	---->	for retrieving objects from collection with less code.
+		 * >>> Where ever object is coming there is generic terminology called Element  i.e.,  E represent object
+		 * 
+		 * New classes added in Java 6 version ::
+		 * ===========================
+		 * In Java 6, two new interfaces 
+		 * 					NavigableSet & NavigableMap are added 
+		 * 					as sub interfaces of SortedSet and SortedMap
+		 * 					for providing more navigation methods to TreeSet and TreeMap.
+		 * 
+		 * New features in Java 7 version ::
+		 * =======================
+		 * Language level new feature 
+		 * 				Generic type inference(copy)
+		 * 				1.5, 1.6v
+		 * 							ArrayList<String> al = new ArrayList<String>();
+		 * 
+		 * 				1.7v
+		 * 							ArrayList<String> al = new ArrayList();
+		 * 
+		 * 
+		 * New classes added in Java 8 version ::
+		 * ===========================
+		 * In Java 8, new classes are added for retrieving object with some addition features like filtering, mapping etc....
+		 * 
+		 * Those new classes are called Functional API and Stream API and all those classes are defined in a new package java.util.function and java.util.stream.
+		 * 
+		 * Another new utility classes are added with name 
+		 * 		1) Optional<T>
+		 * 		2) Objects<T>
+		 * 		3) Collectors<T>
+		 * 
+		 *
+		 *	New enhance added in Java 9 version for collection API
+		 *=========================================
+		 *	We got factory methods to create immutable collection objects with less code with the name "of(-)".
+		 *
+		 *	Stream API improvements by adding more methods.
+		 *
+		 *	New enhancements are added in Java 10v for collection API ::
+		 *============================================
+		 *	We got factory methods to create unmodifiable collection objects by copying elements from other collection with the name copyOf(-).
+		 *
+		 *	Collections framework classes are runtime polymorphic classes ::
+		 *================================================
+		 *	All above 18 classes are categorized into four groups by declaring 4 super interfaces. They are
+		 *					Set, List, Queue, Map.
+		 *
+		 *	Set, List & Queue are grouped as one type declaring a super interface called Collection.
+		 *
+		 *	java.util package classes are runtime polymorphic classes, because all these classes are created under two super interfaces.
+		 *		1)	Collection interface and 
+		 *		2)	Map interface.
+		 *	
+		 *	So, in a project if needed, we can interchange one collection object with another collection object easily and also we can copy elements and entries easy
+		 *	from one collection to another.
+		 *	
+		 *Collections Framework hierarchies ::
+		 *===========================
+		 *	In Java 1.2 all collection classes are grouped into two hierarhies with the name Collections Framework, they are
+		 *		1. Collection	hierarchy
+		 *		2. Map				hierarchy
+		 *
+		 *	Collection & Map are two root interfaces of collections framework classes.
+		 *
+		 *	Collection interface subclasses are meant for storing objects in array format without mapping.
+		 *
+		 *	Map interface subclasses are meant for storing objects with mapping, meaning in (key, value) pair table format.
+		 *
+		 * Is Map sub interface of Collection, if no why?
+		 * 	Map is not sub interface of Collection, because both are different behavioural Objects.
+		 * 
+		 *
+		 * 1) Legacy Collection --------------------------->  1.0 v
+		 * 2) Collections Framework collections ------>   1.2 v
+		 * 3) Generic Collections ------------------------->   1.5 v
+		 * 	
+		 *Three words ::
+		 *1) collection ------------------> just a word, group of objects either without mapping or with mapping.
+		 *2) Collection -----------------> root interface of collection hierarchy without mapping.
+		 *3) Collections ----------------> a class, utility class, contains several static methods to perform some operation on Collection and Map objects commonly.
+		 *
+		 * Different categories of classes available in java.util.package 
+		 * ===========================================
+		 * In java.util.package we have 6 different groups of classes
+		 *     1. container objects classes
+		 *     2. cursor  objects classes
+		 *     3. utility objects classes
+		 *     4. I18N objects classes
+		 *     5. Date & Time objects classes
+		 *     6. Event Listener objects classes.
+		 *     
+		 *     
+		 *  Collection Framework core/super interfaces (10+5) ::
+		 *  =====================================
+		 *  java.util package interfaces
+		 *  	1) Collection<E>
+		 * 		2) Set<E>
+		 * 		3) SortedSet<E>                                            8) Map<K,V>
+		 * 		4) NavigableSet<E>                                       9) SortedMap<K,V>
+		 * 		5) List<E>													10) NavigableMap<K,V>
+		 *     6) Queue<E>
+		 *     7) Deque<E>
+		 * 
+		 * 
+		 * java.util.concurrent package interface ::
+		 * 		11) BlockingQueue<E>                                   14) ConcurrentMap<K,V>
+		 * 		12) TransferQueue<E>										15) ConcurrentNavigableMap<K, V>
+		 * 		13) BlockingDeque<E>
+		 *
+		 *
+		 * Collection Framework CONCRETE implementation classes(18) ::
+		 * ================================================
+		 *  01. HashSet<E>
+		 *  02. LinkedHashSet<E>                                        11. HashMap<K,V>
+		 *  03. TreeSet<E>                                                    12. LinkedHashMap<K,V>
+		 *  04. EnumSet<E>                                                  13. TreeMap<K,V>
+		 *                                                                               14. EnumMap<K,V>
+		 *                                                                               15. WeakHashMap<K, V>
+		 *                                                                               16. IdentityHashMap<K, V>
+		 *  05. Vector<E>                                                      17. Hashtable<K, V>
+		 *  06. Stack<E>                                                        18. Properties<K, V>
+		 *  07. ArrayList<E>
+		 *  08. LinkedList<E>
+		 *  
+		 *  09. PriorityQueue<E>
+		 *  10. ArrayDeque<E>
+		 *  
+		 *  
+		 *  Concurrent aware collections ::
+		 *  =======================
+		 *  1. LinkedBlockingQueue
+		 *  2. ArrayBlockingQueue
+		 *  3. PriorityBlockingQueue
+		 *  4. DelayQueue
+		 *  5. SynchronousQueue
+		 *  
+		 *  6. LinkedBlockingDeque
+		 *  7. LinkedTransferQueue
+		 *  8. CopyOnWriteArrayList
+		 *  9. CopyOnWriteArraySet
+		 *  10. ConcurrentSkipListSet
+		 *  11. ConcurrentHashMap
+		 *  12. ConcurrentSkipListMap
+		 *  
+		 *  
+		 *  Supporting interfaces ::
+		 *  =================
+		 *  These interfaces are used in retrieving and sorting objects in collections
+		 *  
+		 *  1. java.lang.Iterable
+		 *  2. java.lang.Comparable
+		 *  3. java.util.Comparator
+		 *  4. java.util.RandomAccess
+		 *  
+		 *  Cursor objects ::
+		 *  These interfaces are used for retrieving objects from underlying Collection objects. We have 4 cursor objects.
+		 *    1) Enumeration<E>
+		 *    2) Iterator<E>
+		 *    3) ListIterator<E>
+		 *    4) SplitIterator<T>
+		 *    
+		 *    5) for-each loop/enhanced for loop
+		 *    6) forEach() method.
+		 *    7) Stream API
+		 *    8) using list.get(index) and map.get(key)
+		 *    
+		 *    Utility classes ::
+		 *    ===========
+		 *    Utility classes provides static methods for performing different operations on Collection, Map and array objects. Like searching, sorting, filling,
+		 *     swapping, etc...
+		 *     
+		 *     1) Collections      3) Random       5) Base64
+		 *     2) Arrays              4) BitSet          6) StringTokenizer.
+		 *     
+		 *     I18N classes are used to develop an application to display characters in the current country native language.
+		 *     1. Locale
+		 *     2. ResourceBundle
+		 *     3. Currency.
+		 *     
+		 *     	
+		 *     
+		 * Steps to develop collection programming ::
+		 * ===============================
+		 * 1. Add java.util package import statement
+		 * 2. Create appropriate collection object based on the format and order in which objects you want to store.
+		 * 3. Invoke collection methods for storing and counting objects
+		 * 4. Pass/return this collection object to next/previous layer program(if needed) as argument and return value.
+		 * 5. Invoke collection method for searching, retrieving, removing, inserting, replacing objects in this collection in this second class.
+		 * 6. Finally store collection of  objects permanently either in a file or in a DB or printing on console to end user.
+		 * 
+		 * 
+		 * Collection interface methods ::
+		 * ======================
+		 * 1.public boolean isEmpty()    ----> checking collection is empty or not
+		 * 
+		 * 2. public boolean add(E e)    -----> to add single object
+		 * 3. public boolean addAll(Collection<? extends E> c)   ----> to add multiple objects
+		 * 
+		 * 4. public boolean remove(E e)  -----> to remove single object
+		 * 5. public boolean removeAll(Collection<? extends E> c)   ----> to remove multiple objects.
+		 * 6. public void    clear()               ---> to clear(empty) the collections
+		 * 
+		 * 7.	public boolean contains(E e)  -----> checking one object
+		 * 8. public boolean containsAll(Collection<? extends E> c)					-----> checking for multiple objects
+		 * 
+		 * 9. public boolean retainsAll(Collection<? extends E>		c)		----->  to get the copy of multiple objects
+		 * 
+		 * 10. public int size()     --------> counting objects
+		 * 
+		 * 11. public Iterator iterator() ------------->  for retrieving objects
+		 * 
+		 * 12. public int hashCode() --------->   for retrieving identity
+		 * 
+		 * 13. public boolean equals(Object obj)		-------> for comparing objects
+		 * 
+		 * 14. public T[] toArray()		----> to convert type object to Array object for stopping growing its size
+		 * 
+		 * 15. public T[] toArray(T[] t)   ----> to convert specific type of object to Array.
+		 * 
+		 * 
+		 * Common interview questions asking on every collection ::
+		 * ==========================================
+		 * 1.	What is this collection and use of it?
+		 * 2.	Is it synchronized(thread-safe)?
+		 * 3. Is it an ordered collection?
+		 * 4. What is the implemented data structure?
+		 * 5. What is the default capacity and incremental capacity, load factor ?
+		 * 6. What type of elements are allowed to store?
+		 * 7.	Is null allowed, if so how many?
+		 * 8. In which order elements are preserved?
+		 * 9. In which order elements are retrieved?
+		 * 10. Internal Methods calling in collection and executing from our adding object class?
+		 * 
+		 * 
+		 * Vector ::
+		 * 1. Vector is legacy collection and it was given in java 1.0 version. It is used for storing multiple objects in Insertion order in multi-threaded environment
+		 * 		with thread safety.
+		 * 2.	It is synchronized collection.
+		 * 3.	It is ordered collection.
+		 * 4.	the implemented data structure is growable array.
+		 * 5.	the default capacity is 10, incremental capacity is double, load factor is 100% ( simply load factor tells how much filling capacity is required to grow its size).
+		 * 6. all 4 types of elements( homo, hetero, duplicate, unique ) are allowed to store.
+		 * 7. null is allowed, multiple nulls are allowed because duplicates are allowed.
+		 * 8. In Insertion order elements are stored
+		 * 9. Elements are retrieved in random access as well as sequentially.
+		 * 10. equals() method is called internally when searching and removing operations are called.
+		 * 
+		 * ArrayList ::
+		 * ========
+		 * 1. ArrayList is a Collections framework collection, available from java 1.2 version. It is given as sub class or implementation class of List interface.
+		 * 		whenever we want to collect multiple objects with index in single thread model application and method local operations then we must use.
+		 * 2.	No, it is not synhchronized collection.
+		 * 3. Yes, it is ordered collection.
+		 * 4. Resizable array is the implemented data structure.
+		 * 5. The default capacity is 10, and the incremental capacity half, the load factor is 75%.
+		 * 6. all 4 types ( homo , hetero, duplicate, unique objects) of elements are allowed to store.
+		 * 7. null is allowed, mutliple nulls are allowed because duplicates are allowed.
+		 * 8. In Insertion order with index, elements are preserved
+		 * 9. In Random and Sequential elements are retrieved.
+		 * 10. equals() method is called internally in collection.
+		 * 
+		 * 
+		 * LinkedList ::
+		 * =========
+		 * 1. LinkedList is a collections framework collection, available from java 1.2 version. It is a implementation class of List interface. it is used to move 
+		 * 		over collections in sequential order then we should use LinkedList.
+		 * 2. No, it is not synchronized collection.
+		 * 3. yes, it is ordered collection without index.( because it can store elements in nodes )
+		 * 4. Doubly linked list is the implemented data structure.
+		 * 5. Default capacity is zero, inremental capacity 1 , load factor 100%.
+		 * 6. all 4 types( homo, hetero, duplicate, unique objects) of  elements are allowed to store.
+		 * 7. null is allowed , multiple nulls are allowed.
+		 * 8. In Insertion order , elements are preserved.
+		 * 9. In Sequential order only, elements are retrieved.
+		 * 10. equals() method is called internally in Collection.
+		 * 
+		 * Stack ::
+		 * =====
+		 * 1. Stack is subclass of  vector class, available from 1.0 version. It is used for retrieving objects in Last In First Out order
+		 * 2. Stack is the implemented data structure.
+		 * 3.Yes, it is synchronized collection
+		 * 4. Yes, it is ordered collection
+		 * 5. Default capacity is 10, Increamental capacity is double
+		 * 6. all 4 type (homo , hetero, duplicate, unique) of elements are allowed to store
+		 * 7. null is allowed, multiple nulls are allowed
+		 * 8. In insertion Order with index , elements are stored.
+		 * 9. In LIFO we can access but random access is also possible.
+		 * 10. equals() method is called internally in Collection.
+		 * 
+		 * 
+		 * HashSet ::
+		 * =======
+		 * 1. HashSet is a Collections framework collection. it is subtype of  Set, available from java 1.2v. 
+		 * 		If we want to store unique objects without worrying about storing order then we must use HashSet and we can use this for mutli threaded and method local operations
+		 * 2. No, it is not Synchronized 
+		 * 3. No, it is not Ordered collection
+		 * 4. Hash table is the implemented data structure.
+		 * 5. Default capacity is 16, Increamental capacity is double , load factor 75%
+		 * 6. 3 types( homo, hetero, unique) of elements are allowed to store.
+		 * 7. null is allowed , only one null is allowed.
+		 * 8. In hash code order , elements are preserved.
+		 * 9. In Sequential order only, elements are retrived. random order is not supported.
+		 * 10. hashCode() and equals() methods are called in collections internally.
+		 * 
+		 * 
+		 * 
+		 * LinkedHashSet ::
+		 * ============
+		 * 1. LinkedHashSet is a Collections framework collection available from java 1.4v and it is subclass of HashSet.
+		 * 		If we want to store unique objects in Insertion Order then we must use LinkedHashSet. Compared to  HashSet, LinkedHashSet execution is slow because it has to maintain insertion order.
+		 * 2. No, It is not synchronized collection.
+		 * 3. Yes, It is ordered collection. it is Inserion order but not indexed order
+		 * 4. HashSet and doubly linked backed by LinkedHashMap.
+		 * 5. Default capacity is 16, Increamental Capacity is double, load factor 75%.
+		 * 6. 3 types ( homo, hetero, unique ) of elements are allowed to store.
+		 * 7. null is allowed, only one null allowed.
+		 * 8. In Insertion Order, elements are preserved.
+		 * 9. In Sequential order only, elements are retrieved.
+		 * 10. hashCode() and equals() methods are called internally in collection.
+		 * 
+		 * 
+		 * HashMap ::
+		 * ========
+		 * 1. HashMap is a Collections framework collection available from java 1.2v, it is an implementation of Map interface. If want to  store objects with mappings
+		 * and without worrying about storing order then we must use HashMap. 
+		 * 2. No, It is not Synchronized collection.
+		 * 3. No, It is not ordered collection
+		 * 4. Hashtable is the implemented data structure.
+		 * 5. Default capacity is 16, increamental capacity is double, load factory is 0.75.
+		 * 6. key --> homo, hetero, unique			If we pass duplicate  key old value is replaced
+		 * 		value --> all 4 types.
+		 * 7.  key ---> only one null is allowed
+		 * 		value --> multiple nulls are allowed.
+		 * 8. No order is maintained to store.
+		 * 9. key is sequential but value is random.
+		 * 10. On key object , hashCode() and equals() methods are called.
+		 * 
+		 *  
+		 * LinkedHashMap ::
+		 * =============
+		 * 1. LinkedHashMap is a Collections framework collection available from java 1.2v, it is an implementation of Map interface. If want to  store objects with mappings
+		 * in Insertion order then we must use LinkedHashMap. 
+		 * 2. No, It is not Synchronized collection.
+		 * 3. Yes, It is ordered collection
+		 * 4. Hashtable+doubly Linkedlist is the implemented data structure.
+		 * 5. Default capacity is 16, increamental capacity is double, load factory is 0.75.
+		 * 6. key --> homo, hetero, unique			If we pass duplicate  key old value is replaced
+		 * 		value --> all 4 types.
+		 * 7.  key ---> only one null is allowed
+		 * 		value --> multiple nulls are allowed.
+		 * 8. Insertion order is maintained to store.
+		 * 9. key is sequential but value is random.
+		 * 10. On key object , hashCode() and equals() methods are called.
+		 * 
+		 *  
+		 *  Explain internals of HashSet/HashMap/Hashtable? ::
+		 *  ======================================
+		 *  1. The classes those contain a word " Hash" in their name internally uses hashCode(), " == " operator & equals() methods for stopping duplicate
+		 *  		objects, and also for searching, retrieving & removing current elements from Set and Map based collection.
+		 *  2. Inside put() method, 
+		 *  		-First hashCode() method is called
+		 *  		-Next "==" operator is used
+		 *  		-Finally equals() method is called
+		 *  3. hashCode() method is used for storing related objects as one group by separating them from other group of objects in the same map. so that
+		 *  		comparisons will be decreased, execution will become fast. Execution becomes fast because currently adding object will be compared to only 
+		 *  		with its "hash code" objects in this map but not with all object available in the Map.
+		 *  4. Further "==" operator is used for comparing the adding objects with its hashCode objects using reference.
+		 *  5. Finally equals() method is used for comparing the adding object with its hashcode objects using state ( using reference if not overridden ).
+		 *  
+		 *  add()/put() method algorithm in HS/LHS/HM/LHM/Ht ::
+		 *  =========================================
+		 *  6. For storing objects, HashMap is internally uses "hash table " data structure.
+		 *  7. "hash table" internally uses another data structure called "bucket" for grouping the same hashcode objects as one group.
+		 *  8. bucket is the collection of elements whose hashCode is same. This bucket is also a collection object. its LinkedList( from  1.8 onwards it's Binary Tree ).
+		 *  	Initially bucket is LinkedList. When number of entries are >= 8 then LinkedList is changed to binary tree for fast comparison.
+		 *  9. Bucket is used for storing same hash code objects as one group. so that comparing and searching will be fast because currently adding element
+		 *  	will be compared only with this object's hashcode group of objects.
+		 *  10. new bucket will be created only for every new hashcode object. Then this object will be added to this bucket directly without any comparisons.
+		 *  11. if bucket is already available with this currently adding entry's key hashcode then put() will check whether this entry is unique or duplicate by
+		 *  		using "==" operator and equals() method.
+		 *  12. If "==" operator returns "true", adding entry is duplicate on key reference, then key is not added, but its mapped old value is replaced by this new value.
+		 *  13. If "==" operator returns "false", adding entry is unique based on reference, but it may be duplicate based on state. So, put() method will call
+		 *  		equals() method for comparing entry using its content.
+		 *  14. if equals() method also returns false, entry is added in the same bucket, means it is unique entry on data wise.
+		 *  15. if equals() method returns true, adding entry is duplicate on key state wise, then key is not added, but its mapped old value is replaced by
+		 *  		 this new value.
+		 *  16. The hash table data structure is internally implemented by using Node class array.
+		 *  17. The bucket(single linked list with Node objects) is created with given entry(key and value) and its reference is stored in the table(Node[] object)
+		 *  		in its one of the locations.
+		 *  18. To find the location to store in this entry's node object, inside put() method, key object hash code is divided by the HashMap capacity( Ex: key.hC()%16).
+		 *  		This division's reminder value is nothing but the index numbet of the location for storing this entry.
+		 *  
+		 *  
+		 * >> changing each object location when capacity is changed then this process is called rehashing.
+		 *  
+		 *
+		 * Working with TreeSet and TreeMap  classes & Comparable and Comparator interfaces ::
+		 *  If we want to store objects in sorting order we must use TreeSet and TreeMap.
+		 *  
+		 *  TreeSet stores objects in sorting order either in ascending order (or) in descending order (or) insertion order(or) reverse insertion order based on the
+		 *  adding objects given algorithm.
+		 *  
+		 *  TreeSet does not have default sorting order.
+		 *  
+		 *  The sorting order should be defined by the application programmer, in the class whose objects are adding to TreeSet.
+		 *  
+		 *  So the default sorting order of TS is the default sorting order of the objects those are adding to TreeSet.
+		 *  
+		 *  For Storing objects in sorting order, 
+		 *   TreeSet Internally uses either of the below two interfaces
+		 *   	1. Comparable 	or
+		 *   	2. comparator
+		 *   
+		 *   Comparable<T> interface has below method
+		 *   		public int compareTo(Object o1, Object o2)
+		 *   			- It is used for providing default sorting logic
+		 *  
+		 *  Comparator<T> interface has below method
+		 *  		public int compare(Object o1, Object o2)
+		 *  			- it is used for providing custom logic.
+		 *  
+		 *  TS uses these two interfaces, because through interface we can force subclass programmer to implement a method logic.
+		 *  
+		 *  TS requires the sorting order logic that must be provided by adding object class programmer, the objects sorting order logic will be changed from one
+		 *  type of object to another type of object.
+		 *  
+		 *  Therefore to force adding object class programmer to implementing sorting order logic, TS uses interfaces.
+		 *  
+		 *  We must override compareTo() and compare() methods with the logic to return an int value either  0/+ve/-ve
+		 *  	1. If we return 0, second object will not be stored because TS will consider it as duplicate object.
+		 *  	2.If we return +ve value, second object will be stored 
+		 *  			RIGHT to first object, because
+		 *  			TS will consider it as Bigger object
+		 *  	
+		 *  	3. If we return -ve value, second object will be stored
+		 *  		LEFT to first object, because
+		 *  		TS will consider it as Smaller Object.
+		 *  
+		 *  TS.add() method internally calls these interfaces methods, and those methods are executed from adding object class.
+		 *  
+		 *  Then based on the value returned from these methods, 
+		 *  TS will sort objects as below
+		 *  - If returned value is 0 , 
+		 *  	object e2 is not added.
+		 *  
+		 *  - If returned value is -ve, 
+		 *  	object e2 is added LEFT to TS element e1.
+		 *  
+		 *  - If returned value is +ve,
+		 *  	object e2 is added RIGHT to TS element e1.
+		 *  
+		 *
+		 *
+		 *What is the meaning of natural sorting order and custom sorting order?
+		 *
+		 *The sorting order logic is that is implemented in adding object class by deriving the Comparable
+		 *interfaces is called natural sorting order.
+		 *
+		 *The sorting order logic that is implemented in different class by deriving the comparator interface is called custom sorting order logic.
+		 *
+		 *We will implement custom sorting order logic in different class, but not in adding object's class.
+		 */
