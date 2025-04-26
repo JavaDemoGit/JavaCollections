@@ -13,6 +13,22 @@ public class TreeSetInfo {
     System.out.println(ts1);
     System.out.println();
 
+		TreeSet<Integer> ts2 = new TreeSet<>();
+		ts2.add(5);
+		ts2.add(7);
+		ts2.add(6);
+		System.out.println(ts2);
+		
+		// You can not store any type of objects in TreeSet. So you can store comparable interface subtype objects only.
+		// Here we have to implement our user defined classes from  comparable interface then override its method compareTo(-)  then only it allows us to store because 
+		// 	TreeSet doesn't know in which order our objects must be stored.
+		
+		TreeSet<Example>	ts3 = new TreeSet<>();
+		ts3.add(new Example(5,3));
+		ts3.add(new Example(7,2));
+		ts3.add(new Example(6,4));
+		System.out.println(ts3);
+
   }
 }
 
