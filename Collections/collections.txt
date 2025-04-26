@@ -504,146 +504,147 @@ Need of Collections in Java:
 		8. In Insertion Order, elements are preserved.
 		9. In Sequential order only, elements are retrieved.
 		10. hashCode() and equals() methods are called internally in collection.
-		 * 
-		 * 
-		 * HashMap ::
-		 * ========
-		 * 1. HashMap is a Collections framework collection available from java 1.2v, it is an implementation of Map interface. If want to  store objects with mappings
-		 * and without worrying about storing order then we must use HashMap. 
-		 * 2. No, It is not Synchronized collection.
-		 * 3. No, It is not ordered collection
-		 * 4. Hashtable is the implemented data structure.
-		 * 5. Default capacity is 16, increamental capacity is double, load factory is 0.75.
-		 * 6. key --> homo, hetero, unique			If we pass duplicate  key old value is replaced
-		 * 		value --> all 4 types.
-		 * 7.  key ---> only one null is allowed
-		 * 		value --> multiple nulls are allowed.
-		 * 8. No order is maintained to store.
-		 * 9. key is sequential but value is random.
-		 * 10. On key object , hashCode() and equals() methods are called.
-		 * 
-		 *  
-		 * LinkedHashMap ::
-		 * =============
-		 * 1. LinkedHashMap is a Collections framework collection available from java 1.2v, it is an implementation of Map interface. If want to  store objects with mappings
-		 * in Insertion order then we must use LinkedHashMap. 
-		 * 2. No, It is not Synchronized collection.
-		 * 3. Yes, It is ordered collection
-		 * 4. Hashtable+doubly Linkedlist is the implemented data structure.
-		 * 5. Default capacity is 16, increamental capacity is double, load factory is 0.75.
-		 * 6. key --> homo, hetero, unique			If we pass duplicate  key old value is replaced
-		 * 		value --> all 4 types.
-		 * 7.  key ---> only one null is allowed
-		 * 		value --> multiple nulls are allowed.
-		 * 8. Insertion order is maintained to store.
-		 * 9. key is sequential but value is random.
-		 * 10. On key object , hashCode() and equals() methods are called.
-		 * 
-		 *  
-		 *  Explain internals of HashSet/HashMap/Hashtable? ::
-		 *  ======================================
-		 *  1. The classes those contain a word " Hash" in their name internally uses hashCode(), " == " operator & equals() methods for stopping duplicate
-		 *  		objects, and also for searching, retrieving & removing current elements from Set and Map based collection.
-		 *  2. Inside put() method, 
-		 *  		-First hashCode() method is called
-		 *  		-Next "==" operator is used
-		 *  		-Finally equals() method is called
-		 *  3. hashCode() method is used for storing related objects as one group by separating them from other group of objects in the same map. so that
-		 *  		comparisons will be decreased, execution will become fast. Execution becomes fast because currently adding object will be compared to only 
-		 *  		with its "hash code" objects in this map but not with all object available in the Map.
-		 *  4. Further "==" operator is used for comparing the adding objects with its hashCode objects using reference.
-		 *  5. Finally equals() method is used for comparing the adding object with its hashcode objects using state ( using reference if not overridden ).
-		 *  
-		 *  add()/put() method algorithm in HS/LHS/HM/LHM/Ht ::
-		 *  =========================================
-		 *  6. For storing objects, HashMap is internally uses "hash table " data structure.
-		 *  7. "hash table" internally uses another data structure called "bucket" for grouping the same hashcode objects as one group.
-		 *  8. bucket is the collection of elements whose hashCode is same. This bucket is also a collection object. its LinkedList( from  1.8 onwards it's Binary Tree ).
-		 *  	Initially bucket is LinkedList. When number of entries are >= 8 then LinkedList is changed to binary tree for fast comparison.
-		 *  9. Bucket is used for storing same hash code objects as one group. so that comparing and searching will be fast because currently adding element
-		 *  	will be compared only with this object's hashcode group of objects.
-		 *  10. new bucket will be created only for every new hashcode object. Then this object will be added to this bucket directly without any comparisons.
-		 *  11. if bucket is already available with this currently adding entry's key hashcode then put() will check whether this entry is unique or duplicate by
-		 *  		using "==" operator and equals() method.
-		 *  12. If "==" operator returns "true", adding entry is duplicate on key reference, then key is not added, but its mapped old value is replaced by this new value.
-		 *  13. If "==" operator returns "false", adding entry is unique based on reference, but it may be duplicate based on state. So, put() method will call
-		 *  		equals() method for comparing entry using its content.
-		 *  14. if equals() method also returns false, entry is added in the same bucket, means it is unique entry on data wise.
-		 *  15. if equals() method returns true, adding entry is duplicate on key state wise, then key is not added, but its mapped old value is replaced by
-		 *  		 this new value.
-		 *  16. The hash table data structure is internally implemented by using Node class array.
-		 *  17. The bucket(single linked list with Node objects) is created with given entry(key and value) and its reference is stored in the table(Node[] object)
-		 *  		in its one of the locations.
-		 *  18. To find the location to store in this entry's node object, inside put() method, key object hash code is divided by the HashMap capacity( Ex: key.hC()%16).
-		 *  		This division's reminder value is nothing but the index numbet of the location for storing this entry.
-		 *  
-		 *  
-		 * >> changing each object location when capacity is changed then this process is called rehashing.
-		 *  
-		 *
-		 * Working with TreeSet and TreeMap  classes & Comparable and Comparator interfaces ::
-		 *  If we want to store objects in sorting order we must use TreeSet and TreeMap.
-		 *  
-		 *  TreeSet stores objects in sorting order either in ascending order (or) in descending order (or) insertion order(or) reverse insertion order based on the
-		 *  adding objects given algorithm.
-		 *  
-		 *  TreeSet does not have default sorting order.
-		 *  
-		 *  The sorting order should be defined by the application programmer, in the class whose objects are adding to TreeSet.
-		 *  
-		 *  So the default sorting order of TS is the default sorting order of the objects those are adding to TreeSet.
-		 *  
-		 *  For Storing objects in sorting order, 
-		 *   TreeSet Internally uses either of the below two interfaces
-		 *   	1. Comparable 	or
-		 *   	2. comparator
-		 *   
-		 *   Comparable<T> interface has below method
-		 *   		public int compareTo(Object o1, Object o2)
-		 *   			- It is used for providing default sorting logic
-		 *  
-		 *  Comparator<T> interface has below method
-		 *  		public int compare(Object o1, Object o2)
-		 *  			- it is used for providing custom logic.
-		 *  
-		 *  TS uses these two interfaces, because through interface we can force subclass programmer to implement a method logic.
-		 *  
-		 *  TS requires the sorting order logic that must be provided by adding object class programmer, the objects sorting order logic will be changed from one
-		 *  type of object to another type of object.
-		 *  
-		 *  Therefore to force adding object class programmer to implementing sorting order logic, TS uses interfaces.
-		 *  
-		 *  We must override compareTo() and compare() methods with the logic to return an int value either  0/+ve/-ve
-		 *  	1. If we return 0, second object will not be stored because TS will consider it as duplicate object.
-		 *  	2.If we return +ve value, second object will be stored 
-		 *  			RIGHT to first object, because
-		 *  			TS will consider it as Bigger object
-		 *  	
-		 *  	3. If we return -ve value, second object will be stored
-		 *  		LEFT to first object, because
-		 *  		TS will consider it as Smaller Object.
-		 *  
-		 *  TS.add() method internally calls these interfaces methods, and those methods are executed from adding object class.
-		 *  
-		 *  Then based on the value returned from these methods, 
-		 *  TS will sort objects as below
-		 *  - If returned value is 0 , 
-		 *  	object e2 is not added.
-		 *  
-		 *  - If returned value is -ve, 
-		 *  	object e2 is added LEFT to TS element e1.
-		 *  
-		 *  - If returned value is +ve,
-		 *  	object e2 is added RIGHT to TS element e1.
-		 *  
-		 *
-		 *
-		 *What is the meaning of natural sorting order and custom sorting order?
-		 *
-		 *The sorting order logic is that is implemented in adding object class by deriving the Comparable
-		 *interfaces is called natural sorting order.
-		 *
-		 *The sorting order logic that is implemented in different class by deriving the comparator interface is called custom sorting order logic.
-		 *
-		 *We will implement custom sorting order logic in different class, but not in adding object's class.
+		
+		
+	HashMap ::
+	========
+	  1. HashMap is a Collections framework collection available from java 1.2v, it is an implementation of Map interface. If want to  store objects with mappings
+		 and without worrying about storing order then we must use HashMap. 
+		2. No, It is not Synchronized collection.
+		3. No, It is not ordered collection
+		4. Hashtable is the implemented data structure.
+		5. Default capacity is 16, increamental capacity is double, load factory is 0.75.
+		6. key --> homo, hetero, unique			If we pass duplicate  key old value is replaced
+		   value --> all 4 types.
+		7.  key ---> only one null is allowed
+		  	value --> multiple nulls are allowed.
+		8. No order is maintained to store.
+		9. key is sequential but value is random.
+		10. On key object , hashCode() and equals() methods are called.
+		
+		
+	LinkedHashMap ::
+	=============
+		1. LinkedHashMap is a Collections framework collection available from java 1.2v, it is an implementation of Map interface. If want to  store objects with mappings
+		 in Insertion order then we must use LinkedHashMap. 
+		2. No, It is not Synchronized collection.
+		3. Yes, It is ordered collection
+		4. Hashtable+doubly Linkedlist is the implemented data structure.
+		5. Default capacity is 16, increamental capacity is double, load factory is 0.75.
+		6. key --> homo, hetero, unique			If we pass duplicate  key old value is replaced
+		   value --> all 4 types.
+		7.  key ---> only one null is allowed
+		 		value --> multiple nulls are allowed.
+		8. Insertion order is maintained to store.
+		9. key is sequential but value is random.
+		10. On key object , hashCode() and equals() methods are called.
+		
+
+		
+	Explain internals of HashSet/HashMap/Hashtable? ::
+	======================================
+		1. The classes those contain a word " Hash" in their name internally uses hashCode(), " == " operator & equals() methods for stopping duplicate
+		  	objects, and also for searching, retrieving & removing current elements from Set and Map based collection.
+		2. Inside put() method, 
+		  		-First hashCode() method is called
+		  		-Next "==" operator is used
+		  		-Finally equals() method is called
+		3. hashCode() method is used for storing related objects as one group by separating them from other group of objects in the same map. so that
+				comparisons will be decreased, execution will become fast. Execution becomes fast because currently adding object will be compared to only 
+				with its "hash code" objects in this map but not with all object available in the Map.
+		4. Further "==" operator is used for comparing the adding objects with its hashCode objects using reference.
+		5. Finally equals() method is used for comparing the adding object with its hashcode objects using state ( using reference if not overridden ).
+		
+	add()/put() method algorithm in HS/LHS/HM/LHM/Ht ::
+	=========================================
+		6. For storing objects, HashMap is internally uses "hash table " data structure.
+		7. "hash table" internally uses another data structure called "bucket" for grouping the same hashcode objects as one group.
+		8. bucket is the collection of elements whose hashCode is same. This bucket is also a collection object. its LinkedList( from  1.8 onwards it's Binary Tree ).
+		   Initially bucket is LinkedList. When number of entries are >= 8 then LinkedList is changed to binary tree for fast comparison.
+		9. Bucket is used for storing same hash code objects as one group. so that comparing and searching will be fast because currently adding element
+		   will be compared only with this object's hashcode group of objects.
+		10. new bucket will be created only for every new hashcode object. Then this object will be added to this bucket directly without any comparisons.
+		11. if bucket is already available with this currently adding entry's key hashcode then put() will check whether this entry is unique or duplicate by
+		 		using "==" operator and equals() method.
+		12. If "==" operator returns "true", adding entry is duplicate on key reference, then key is not added, but its mapped old value is replaced by this new value.
+		13. If "==" operator returns "false", adding entry is unique based on reference, but it may be duplicate based on state. So, put() method will call
+	 	  	equals() method for comparing entry using its content.
+		14. if equals() method also returns false, entry is added in the same bucket, means it is unique entry on data wise.
+		15. if equals() method returns true, adding entry is duplicate on key state wise, then key is not added, but its mapped old value is replaced by
+		 		 this new value.
+		16. The hash table data structure is internally implemented by using Node class array.
+	  17. The bucket(single linked list with Node objects) is created with given entry(key and value) and its reference is stored in the table(Node[] object)
+	  		in its one of the locations.
+		18. To find the location to store in this entry's node object, inside put() method, key object hash code is divided by the HashMap capacity( Ex: key.hC()%16).
+				This division's reminder value is nothing but the index numbet of the location for storing this entry.
+		
+		
+		>> changing each object location when capacity is changed then this process is called rehashing.
+		  
+		
+	Working with TreeSet and TreeMap  classes & Comparable and Comparator interfaces ::
+	  If we want to store objects in sorting order we must use TreeSet and TreeMap.
+		  
+		TreeSet stores objects in sorting order either in ascending order (or) in descending order (or) insertion order(or) reverse insertion order based on the
+		adding objects given algorithm.
+		 
+		TreeSet does not have default sorting order.
+		 
+		The sorting order should be defined by the application programmer, in the class whose objects are adding to TreeSet.
+		  
+		So the default sorting order of TS is the default sorting order of the objects those are adding to TreeSet.
+		 
+		For Storing objects in sorting order, 
+		TreeSet Internally uses either of the below two interfaces
+		 	1. Comparable 	or
+		 	2. comparator
+		 
+		Comparable<T> interface has below method
+		   		public int compareTo(Object o1, Object o2)
+		   		- It is used for providing default sorting logic
+		  
+		Comparator<T> interface has below method
+		  		public int compare(Object o1, Object o2)
+		 			- it is used for providing custom logic.
+		  
+		TS uses these two interfaces, because through interface we can force subclass programmer to implement a method logic.
+		
+		TS requires the sorting order logic that must be provided by adding object class programmer, the objects sorting order logic will be changed from one
+		type of object to another type of object.
+		
+		Therefore to force adding object class programmer to implementing sorting order logic, TS uses interfaces.
+		
+		We must override compareTo() and compare() methods with the logic to return an int value either  0/+ve/-ve
+		 1. If we return 0, second object will not be stored because TS will consider it as duplicate object.
+		 2.If we return +ve value, second object will be stored 
+				RIGHT to first object, because
+	 			TS will consider it as Bigger object
+			
+		 3. If we return -ve value, second object will be stored
+		  		LEFT to first object, because
+		  		TS will consider it as Smaller Object.
+		
+	  TS.add() method internally calls these interfaces methods, and those methods are executed from adding object class.
+		 
+		Then based on the value returned from these methods, 
+		TS will sort objects as below
+		 - If returned value is 0 , 
+		 	object e2 is not added.
+		 
+		 - If returned value is -ve, 
+		 	object e2 is added LEFT to TS element e1.
+		
+		 - If returned value is +ve,
+		 	object e2 is added RIGHT to TS element e1.
+		 
+		
+		
+		What is the meaning of natural sorting order and custom sorting order?
+		
+		The sorting order logic is that is implemented in adding object class by deriving the Comparable
+		interfaces is called natural sorting order.
+		
+		The sorting order logic that is implemented in different class by deriving the comparator interface is called custom sorting order logic.
+		
+		We will implement custom sorting order logic in different class, but not in adding object's class.
 		 */
