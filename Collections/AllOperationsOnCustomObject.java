@@ -22,7 +22,7 @@ public class AllOperationsOnCustomObject {
 		
 		//searching
     System.out.println(al.contains(new String("a")));
-    System.out.println(al.contains(new Integer(5)));
+    System.out.println(al.contains(Integer.valueOf(5)));
 		System.out.println(al.contains(new Example(5,6)));
 		System.out.println();
 

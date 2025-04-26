@@ -18,6 +18,7 @@ public class SubList {
 
     //ArrayList<Object> al1 = (ArrayList)list.subList(1, 4); 
     List<Object> list4 = list.subList(1, 4);
+    System.out.println(list4);
 		System.out.println(list.subList(2, 4));
     System.out.println(list.subList(0, 4));
     //System.out.println(list.subList(-1, 4));   // start and end index >= positive and <= size
