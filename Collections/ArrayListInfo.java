@@ -52,6 +52,21 @@ public class ArrayListInfo {
 		System.out.println("size:	"+al.size());
 		System.out.println("elements:	"+al);
 		System.out.println();
+
+		ArrayList<Object>	al2 = new ArrayList<>();
+		al2.add("a");
+		al2.add("b");
+		al2.add(5);
+		al2.add(new Example(5,6));
+		
+		ArrayList<Object>	al3 = new ArrayList<>();
+		al3.add(true);
+		al3.add(6.7);
+		al3.add(al2);			// Here elements of al2 are not copied instead the al1 reference is stored.
+		al3.addAll(al2);
+		
+		System.out.println(al2);
+		System.out.println(al3);
   }
 }
 /*
